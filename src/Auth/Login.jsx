@@ -20,7 +20,7 @@ const loginSchema = yup.object().shape({
 const Login = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const loginUser = useAuth();
+  const { loginUser } = useAuth();
   const methods = useForm({
     defaultValues,
     resolver: yupResolver(loginSchema),
@@ -39,6 +39,8 @@ const Login = () => {
         enqueueSnackbar("Login SuccessFul", { variant: "success" });
         navigate("/home");
       } else {
+        console.log("Invalid Credntials");
+        
         enqueueSnackbar("Invalid Credntials", { variant: "error" });
       }
     } catch (err) {
